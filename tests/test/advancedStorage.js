@@ -3,7 +3,7 @@ const AdvancedStorage = artifacts.require("AdvancedStorage");
 contract("AdvancedStorage", () => {
 	let advancedStorage = null;
 	before(async () => {
-		const advancedStorage = await AdvancedStorage.deployed();
+		advancedStorage = await AdvancedStorage.deployed();
 	});
 	it("Adds an item to the array", async () => {
 		await advancedStorage.add(10);
