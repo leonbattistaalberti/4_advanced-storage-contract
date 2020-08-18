@@ -34,7 +34,13 @@ const initWeb3 = () => {
 };
 
 // initialize smart contract instance
-const initContract = () => {};
+const initContract = () => {
+	let deploymentKey = Object.keys(AdvancedStorage.networks)[0];
+	return new Web3.eth.Contract(
+		AdvancedStorage.abi,
+		AdvancedStorage.networks[deploymentKey].address
+	);
+};
 
 // initialize app
 const initApp = () => {};
