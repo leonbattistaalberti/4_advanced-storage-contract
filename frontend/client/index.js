@@ -37,11 +37,10 @@ const initWeb3 = () => {
 // initialize smart contract instance
 const initContract = () => {
 	let deploymentKey = Object.keys(AdvancedStorage.networks)[0];
+	let contractAddress = AdvancedStorage.networks[deploymentKey].address;
+	let contractAbi = AdvancedStorage.abi;
 	// initite smart contract instance
-	return new Web3.eth.Contract(
-		AdvancedStorage.abi,
-		AdvancedStorage.networks[deploymentKey].address
-	);
+	return new web3.eth.Contract(contractAbi, contractAddress);
 };
 
 // initialize app
@@ -71,6 +70,7 @@ const initApp = () => {
 	// 3. add data to ids array
 	$addData.addEventListener("submit", (evt) => {
 		evt.preventDefault();
+		console.log(evt.target);
 		let data = evt.target.elements[0].value;
 		advancedStorage.methods
 			.add(data)
@@ -90,6 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			web3 = _web3;
 			// initialize the smart contract
 			advancedStorage = initContract();
+
 			// initialize app
 			initApp();
 		})
